@@ -4,17 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- react -->
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
     <!-- react dom -->
-    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <!-- babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
+      // 이거 하나가 컴포넌트 함수.
       function App() {
         const [counter, setCounter] = React.useState(0);
 
+        // 초기값을 useState에서 업데이트 시키는 콜백함수. App이라는 컴포넌트가 리렌더링되면서 counter의 값도 변경됨
         const onClick = () => {
-          setCounter(counter + 1);
+          setCounter((current) => current + 1);
         };
 
         return (
@@ -24,12 +26,46 @@
           </div>
         );
       }
+
+      // label 태그의 "for"이나 "class"와 같은 태그는 javascript에서 선점된 네이밍
+      // jsx 문법상에서 html for과 같은 prop을 쓰려면 그에 맞춰줘야함.
+      function Test() {
+        const [min, setMin] = React.useState();
+        const [hour, setHour] = React.useState();
+        const onChange = (event) => {
+          setMin(event.target.value);
+          setHour(event.target.value / 60);
+        };
+
+        console.log(min);
+        return (
+          <div>
+            <label htmlFor="min">min</label>
+            <input
+              value={min}
+              onChange={onChange}
+              id="min"
+              placeholders="minute"
+              type="number"
+            />
+            <label htmlFor="hour">hour</label>
+            <input
+              value={hour}
+              onChange={onChange}
+              id="hour"
+              placeholders="hour"
+              type="number"
+            />
+          </div>
+        );
+      }
       const root = document.getElementById('root');
       // jsx 문법 -> react를 더 직관적으로
       // jsx로 생성한 element를 컴포넌트에 넣을 때, 대문자가 아니면 html tag로 인식할 수 있어, 대문자로 할당
       const container = (
         <div>
           <App />
+          <Test />
         </div>
       );
       // render
