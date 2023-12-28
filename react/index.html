@@ -10,11 +10,28 @@
     <!-- babel -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
+      function App() {
+        const [counter, setCounter] = React.useState(0);
+
+        const onClick = () => {
+          setCounter(counter + 1);
+        };
+
+        return (
+          <div>
+            <h3>total count: {counter}</h3>
+            <button onClick={onClick}>click me</button>
+          </div>
+        );
+      }
       const root = document.getElementById('root');
       // jsx 문법 -> react를 더 직관적으로
-      const Title = <h3>hi</h3>;
-      console.log('Title', Title);
-      const container = React.createElement('div', null, [Title]);
+      // jsx로 생성한 element를 컴포넌트에 넣을 때, 대문자가 아니면 html tag로 인식할 수 있어, 대문자로 할당
+      const container = (
+        <div>
+          <App />
+        </div>
+      );
       // render
       ReactDOM.render(container, root);
     </script>
