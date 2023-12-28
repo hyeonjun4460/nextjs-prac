@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- react -->
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <!-- react dom -->
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const root = document.getElementById('root');
+      // jsx 문법 -> react를 더 직관적으로
+      const Title = <h3>hi</h3>;
+      console.log('Title', Title);
+      const container = React.createElement('div', null, [Title]);
+      // render
+      ReactDOM.render(container, root);
+    </script>
+    <title>test</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
