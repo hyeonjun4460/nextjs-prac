@@ -33,9 +33,14 @@
         const [min, setMin] = React.useState();
         const [hour, setHour] = React.useState();
         const [flipped, setFlipped] = React.useState(false);
-        const onChange = (event) => {
+        const onMinChange = (event) => {
           setMin(event.target.value);
           setHour(event.target.value / 60);
+        };
+
+        const onHourChange = (event) => {
+          setHour(event.target.value);
+          setMin(event.target.value * 60);
         };
 
         const flip = () => {
@@ -48,7 +53,7 @@
             <label htmlFor="min">min</label>
             <input
               value={min}
-              onChange={onChange}
+              onChange={flipped === false ? onHourChange : onMinChange}
               id="min"
               placeholders="minute"
               type="number"
@@ -57,7 +62,7 @@
             <label htmlFor="hour">hour</label>
             <input
               value={hour}
-              onChange={onChange}
+              onChange={flipped === false ? onHourChange : onMinChange}
               id="hour"
               placeholders="hour"
               type="number"
