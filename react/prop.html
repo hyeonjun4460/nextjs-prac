@@ -15,7 +15,7 @@
 
       const root = document.getElementById('root');
 
-      function Btn({ text, onClick }) {
+      function Btn({ text, onClick, fontSize = 16 }) {
         console.log(text, 'is rendered');
         return (
           <button
@@ -26,6 +26,7 @@
               padding: '10px 20px',
               border: 0,
               borderRadius: 10,
+              fontSize,
             }}
           >
             {text}
@@ -35,6 +36,7 @@
       Btn.propTypes = {
         text: PropTypes.string.isRequired,
         onClick: PropTypes.func,
+        fontSize: PropTypes.number,
       };
 
       // root div에 렌더링하는 컴포넌트
@@ -53,8 +55,8 @@
 
         return (
           <div>
-            <MemoBtn text={value} onClick={onClick} />
-            <MemoBtn text={value} onClick={onClick} />
+            <MemoBtn text={value} onClick={onClick} fontSize={30} />
+            <MemoBtn text={value} onClick={onClick} fontSize={25} />
             <MemoBtn text="use Memo" />
           </div>
         );
