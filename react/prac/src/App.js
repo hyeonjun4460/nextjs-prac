@@ -17,7 +17,9 @@ function App() {
     if (keyword.length > 3) console.log(`search for ${keyword}`);
   }, [keyword]);
 
-  console.log('i am always called by changed state');
+  useEffect(() => {
+    console.log('i am called when "state" changed');
+  }, [state]);
 
   const test = () => {
     console.log('i am called one time when first rendering');
